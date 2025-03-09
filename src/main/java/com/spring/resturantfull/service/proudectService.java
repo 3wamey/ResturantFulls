@@ -1,6 +1,6 @@
 package com.spring.resturantfull.service;
 
-import com.spring.resturantfull.service.Dtos.productDto;
+import com.spring.resturantfull.Dtos.productDto;
 
 import java.util.List;
 

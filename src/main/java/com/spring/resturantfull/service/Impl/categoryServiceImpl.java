@@ -2,7 +2,7 @@ package com.spring.resturantfull.service.Impl;
 
 import com.spring.resturantfull.mapper.CategoryMapper;
 import com.spring.resturantfull.repository.CategoryRepo;
-import com.spring.resturantfull.service.Dtos.categoryDto;
+import com.spring.resturantfull.Dtos.categoryDto;
 import com.spring.resturantfull.service.categoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

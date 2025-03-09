@@ -3,7 +3,7 @@ package com.spring.resturantfull.controller;
 
 
 
-import com.spring.resturantfull.service.Dtos.productDto;
+import com.spring.resturantfull.Dtos.productDto;
 import com.spring.resturantfull.service.proudectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

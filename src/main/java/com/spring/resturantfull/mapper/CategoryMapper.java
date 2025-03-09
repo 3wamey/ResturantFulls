@@ -3,7 +3,7 @@ package com.spring.resturantfull.mapper;
 
 
 import com.spring.resturantfull.model.Category;
-import com.spring.resturantfull.service.Dtos.categoryDto;
+import com.spring.resturantfull.Dtos.categoryDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

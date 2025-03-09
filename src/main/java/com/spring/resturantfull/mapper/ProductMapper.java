@@ -2,7 +2,7 @@ package com.spring.resturantfull.mapper;
 
 
 import com.spring.resturantfull.model.Product;
-import com.spring.resturantfull.service.Dtos.productDto;
+import com.spring.resturantfull.Dtos.productDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

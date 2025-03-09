@@ -1,6 +1,6 @@
 package com.spring.resturantfull.service.BundleService;
 
-import com.spring.resturantfull.service.Dtos.BundelMesssage.BundleMessage;
+import com.spring.resturantfull.Dtos.BundelMesssage.BundleMessage;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Component;

@@ -2,10 +2,10 @@ package com.spring.resturantfull.config;
 
 
 import com.spring.resturantfull.service.BundleService.BundleTranslatorService;
-import com.spring.resturantfull.service.Dtos.BundelMesssage.ExceptionResponseDto;
+import com.spring.resturantfull.Dtos.BundelMesssage.ExceptionResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 

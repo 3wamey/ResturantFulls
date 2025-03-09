@@ -1,4 +1,4 @@
-package com.spring.resturantfull.service.Dtos;
+package com.spring.resturantfull.Dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;

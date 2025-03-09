@@ -1,4 +1,4 @@
-package com.spring.resturantfull.service.Dtos.BundelMesssage;
+package com.spring.resturantfull.Dtos.BundelMesssage;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;

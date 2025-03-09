@@ -3,7 +3,7 @@ package com.spring.resturantfull.service.Impl;
 import com.spring.resturantfull.mapper.ProductMapper;
 import com.spring.resturantfull.model.Product;
 import com.spring.resturantfull.repository.ProductRepo;
-import com.spring.resturantfull.service.Dtos.productDto;
+import com.spring.resturantfull.Dtos.productDto;
 import com.spring.resturantfull.service.proudectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
