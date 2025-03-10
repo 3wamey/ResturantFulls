@@ -4,6 +4,7 @@ package com.spring.resturantfull.controller;
 
 
 import com.spring.resturantfull.Dtos.productDto;
+import com.spring.resturantfull.controller.vm.ProductResponseVM;
 import com.spring.resturantfull.service.proudectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,22 +19,19 @@ public class ProductController {
     @Autowired
     private proudectService service;
 
-    @GetMapping("/category/categoryId/{categoryId}")
-    ResponseEntity<List<productDto>> productAllProducts(@PathVariable("categoryId") Long categoryId) {
-        return ResponseEntity.ok(service.GetProductsbyCategoryId(categoryId));
+    @GetMapping("/category/categoryId/{categoryId}/pageNo/{pageNo}/pageSize/{pageSize}")
+    ResponseEntity<ProductResponseVM> productAllProducts(@PathVariable("categoryId") Long categoryId, @PathVariable Integer pageNo, @PathVariable Integer pageSize) {
+        return ResponseEntity.ok(service.getProductsByCategoryId(categoryId, pageNo, pageSize));
+    }
+
+    @GetMapping("/search/{letters}/pageNo/{pageNo}/pageSize/{pageSize}")
+    ResponseEntity<ProductResponseVM> search(@PathVariable("letters") String Letter, @PathVariable Integer pageNo, @PathVariable Integer pageSize) {
+        return ResponseEntity.ok(service.getProductByLetters(Letter, pageNo, pageSize));
     }
 
 
-
-    @GetMapping("/search/{keyword}")
-    ResponseEntity<List<productDto>> search(@PathVariable("keyword") String keyword) {
-        return ResponseEntity.ok(service.getProductByLetters(keyword));
+    @GetMapping("pageNo/{pageNo}/pageSize/{pageSize}")
+    ResponseEntity<ProductResponseVM> productAllProducts(@PathVariable Integer pageNo, @PathVariable Integer pageSize) {
+        return ResponseEntity.ok(service.getProducts(pageNo, pageSize));
     }
-
-
-    @GetMapping
-    ResponseEntity<List<productDto>> getAllProducts() {
-        return ResponseEntity.ok(service.getAllProducts());
-    }
-
 }
