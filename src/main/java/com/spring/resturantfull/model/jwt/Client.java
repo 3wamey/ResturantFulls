@@ -1,5 +1,6 @@
 package com.spring.resturantfull.model.jwt;
 
+import com.spring.resturantfull.model.Orders;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,5 +23,8 @@ public class Client extends ClientBaseEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    List<Orders> requestOrders;
 
 }

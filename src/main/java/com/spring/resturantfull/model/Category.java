@@ -15,4 +15,6 @@ public class Category  extends BaseEntity {
 
     @OneToMany(mappedBy = "category")
     private List<Product> products;
+
+
 }

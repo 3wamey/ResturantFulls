@@ -21,7 +21,8 @@ public interface ProductRepo extends JpaRepository<Product,Long> {
     Page<Product> getProductByLetters(@Param("val") String letters, Pageable pageable);
 
 
-
+    @Query(value = "SELECT count(id) from Product where category.id = ?1")
+    int findProductSizeByCategoryId(Long id);
 
 
 

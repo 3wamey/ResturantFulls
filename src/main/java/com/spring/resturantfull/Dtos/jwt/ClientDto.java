@@ -22,7 +22,7 @@ public class ClientDto {
 
 //    @NotBlank(message = "Name cannot be empty")
 //    @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
-//    private String name;
+    private String name;
 
 //    @NotBlank(message = "Email cannot be empty")
 //    @Email(message = "Email must be valid")

@@ -65,4 +65,12 @@ public class productServiceImpl implements proudectService {
                 productPage.getTotalElements()
         );
     }
+
+    @Override
+    public List<productDto> findProductsByIds(List<Long> porductIds) {
+        List <Product> products = productRepo.findAllById(porductIds);
+        return ProductMapper.PRODUCT_MAPPER.toDtoList(products);
+    }
+
+
 }

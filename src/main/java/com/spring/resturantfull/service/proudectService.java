@@ -16,12 +16,6 @@ public interface proudectService {
     ProductResponseVM getProducts(Integer pageNo, Integer pageSize);
 
 
-
-
-
-//    List<productDto> GetProductsbyCategoryId(Long categoryId);
-//    List<productDto> getProductByLetters(String keyword);
-//    List<productDto> getAllProducts();
-
+    List<productDto> findProductsByIds(List<Long> porductIds);
 
 }
