@@ -1,5 +1,6 @@
 package com.spring.resturantfull.model.jwt;
 
+import com.spring.resturantfull.model.ContactInfo;
 import com.spring.resturantfull.model.Orders;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -26,5 +27,8 @@ public class Client extends ClientBaseEntity {
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     List<Orders> requestOrders;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    List<ContactInfo> contactInfo;
 
 }

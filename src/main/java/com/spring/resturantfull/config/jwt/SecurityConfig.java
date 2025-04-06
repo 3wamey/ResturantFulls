@@ -40,6 +40,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/category/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.POST, "/orders/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.GET, "/chefs/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/contactInfo/**").hasAnyRole("USER", "ADMIN")
         );
 
         http.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
