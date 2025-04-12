@@ -16,4 +16,7 @@ public interface RoleMapper {
     Role toEntity(RoleDto roleDto);
 
     List<Role> toEntityList(List<RoleDto> roleDtos);
+
+    RoleDto toDto(Role role);
+    List<RoleDto> toDtoList(List<Role> roles);
 }

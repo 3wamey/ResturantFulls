@@ -10,6 +10,9 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class AuthServiceImpl implements AuthService {
     @Autowired
@@ -29,6 +32,8 @@ public class AuthServiceImpl implements AuthService {
             throw new BadCredentialsException("error.clientNotExist");
         }
 
-        return new TokenDto(tokenHandler.createToken(client));
+        List<String> roles = client.getRoles().stream().map(role -> role.getCode().substring(5)).collect(Collectors.toList());
+        return new TokenDto(tokenHandler.createToken(client), roles);
+
     }
 }

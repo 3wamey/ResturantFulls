@@ -12,4 +12,5 @@ public class productDto  extends BaseDto {
     @NotBlank(message = "error.noSuchLetter")
     private String description;
     private double price;
+    private Long categoryId;
 }

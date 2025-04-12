@@ -5,6 +5,7 @@ import com.spring.resturantfull.Dtos.categoryDto;
 import com.spring.resturantfull.service.categoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ public class CategoryController {
 
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     ResponseEntity<List<categoryDto>> categories(){
 
         return  ResponseEntity.ok(service.GetAllCategories());

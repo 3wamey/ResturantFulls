@@ -17,5 +17,6 @@ public interface proudectService {
 
 
     List<productDto> findProductsByIds(List<Long> porductIds);
+    productDto addProduct(productDto productDto);
 
 }
