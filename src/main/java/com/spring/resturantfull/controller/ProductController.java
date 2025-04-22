@@ -20,6 +20,12 @@ public class ProductController {
     @Autowired
     private proudectService service;
 
+    @GetMapping("pageNo/{pageNo}/pageSize/{pageSize}")
+
+    ResponseEntity<ProductResponseVM> productAllProducts(@PathVariable Integer pageNo, @PathVariable Integer pageSize) {
+        return ResponseEntity.ok(service.getProducts(pageNo, pageSize));
+    }
+
     @GetMapping("/category/categoryId/{categoryId}/pageNo/{pageNo}/pageSize/{pageSize}")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     ResponseEntity<ProductResponseVM> productAllProducts(@PathVariable("categoryId") Long categoryId, @PathVariable Integer pageNo, @PathVariable Integer pageSize) {
@@ -27,22 +33,36 @@ public class ProductController {
     }
 
     @GetMapping("/search/{letters}/pageNo/{pageNo}/pageSize/{pageSize}")
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+   @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     ResponseEntity<ProductResponseVM> search(@PathVariable("letters") String Letter, @PathVariable Integer pageNo, @PathVariable Integer pageSize) {
         return ResponseEntity.ok(service.getProductByLetters(Letter, pageNo, pageSize));
     }
 
 
-    @GetMapping("pageNo/{pageNo}/pageSize/{pageSize}")
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    ResponseEntity<ProductResponseVM> productAllProducts(@PathVariable Integer pageNo, @PathVariable Integer pageSize) {
-        return ResponseEntity.ok(service.getProducts(pageNo, pageSize));
-    }
+
+
+
+
+
+
 
     @PostMapping("/product/addProduct")
-    @PreAuthorize("hasRole('ADMIN')")
+   @PreAuthorize("hasRole('ADMIN')")
     ResponseEntity<productDto> addProduct(@RequestBody productDto   product) {
         return ResponseEntity.ok(service.addProduct(product));
+    }
+
+
+    @PutMapping("/update")
+  @PreAuthorize("hasRole('ADMIN')")
+    ResponseEntity<productDto> updateProduct(@RequestBody productDto product) {
+        return ResponseEntity.ok(service.updateProduct(product));
+    }
+
+    @DeleteMapping("/delete")
+   @PreAuthorize("hasRole('ADMIN')")
+    ResponseEntity<productDto> deleteProduct(@RequestBody productDto product) {
+        return ResponseEntity.ok(service.deleteProduct(product));
     }
 
 

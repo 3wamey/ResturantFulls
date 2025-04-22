@@ -23,10 +23,11 @@ public class CategoryController {
 
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+
     ResponseEntity<List<categoryDto>> categories(){
 
         return  ResponseEntity.ok(service.GetAllCategories());
     }
+
 
 }

@@ -34,4 +34,11 @@ public class categoryServiceImpl implements categoryService {
         return CategoryMapper.CATEGORY_MAPPER.toDto(category.get());
     }
 
+    @Override
+    public categoryDto findByName(String name) {
+        Category category = categoryRepo.findByName(name)
+                .orElseThrow(() -> new RuntimeException("Category not found with name: " + name));
+        return  CategoryMapper.CATEGORY_MAPPER.toDto(category);
+    }
+
 }

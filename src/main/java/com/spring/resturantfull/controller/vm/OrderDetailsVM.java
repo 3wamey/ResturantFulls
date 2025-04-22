@@ -16,6 +16,8 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderDetailsVM {
 
+    private String userName;
+    private String email;
     private String code;
 
     @JsonProperty("products")
@@ -24,5 +26,6 @@ public class OrderDetailsVM {
     private String totalPrice;
 
     private String totalQuantity;
+
 
 }

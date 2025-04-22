@@ -31,33 +31,23 @@ public class OrderServiceImpl implements OrdersService {
     @Autowired
     proudectService proudectService;
 
-
     @Override
     public Map<String, String> saveOrder(OrdersDto ordersDto) {
+
         List<Product> products = ProductMapper.PRODUCT_MAPPER.toEntityList(proudectService.findProductsByIds(ordersDto.getProductsIds()));
-        double totalPrice = products
-                .stream()
-                .map(Product::getPrice)
-                .reduce(Double::sum).get();
-
-
+        double totalPrice = products.stream().map(Product::getPrice).reduce(Double::sum).get();
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Client client = (Client) authentication.getPrincipal();
+
         String code = UserCode.generateCode(ordersRepo.findAll().size(), client.getName());
 
         Orders orders = OrderMapper.ORDER_MAPPER.toEntity(ordersDto);
         orders.setClient(client);
         orders.setProducts(products);
-
-//        String code = UserCode.extractCode();
-        // check on table orders if order has same code
-        // re create code and check if recreate still create if code not exist save
         orders.setTotalPrice(String.valueOf(totalPrice));
         orders.setTotalQuantity(String.valueOf(products.size()));
         orders.setCode(code);
-
-        orders.setCode(UserCode.extractCode());
 
         ordersRepo.save(orders);
 
@@ -67,7 +57,7 @@ public class OrderServiceImpl implements OrdersService {
     }
 
     @Override
-    public OrderDetailsVM getOrderDetails(String code)throws RuntimeException {
+    public OrderDetailsVM getOrderDetails(String code) throws RuntimeException {
         Optional<Orders> orders = ordersRepo.findByCode(code);
 
         if (orders.isEmpty()) {
@@ -81,13 +71,13 @@ public class OrderServiceImpl implements OrdersService {
     @Override
     public List<OrderDetailsVM> getAllOrderDetails() {
         List<Orders> orders = ordersRepo.findAll();
-        return orders
-                .stream()
-                .map(this::extractOrderDetailsVM)
-                .collect(Collectors.toList());
+        return orders.stream().map(order -> {
+            OrderDetailsVM orderDetailsVM = extractOrderDetailsVM(order);
+            orderDetailsVM.setUserName(order.getClient().getName());
+            orderDetailsVM.setEmail(order.getClient().getEmail());
+            return orderDetailsVM;
+        }).collect(Collectors.toList());
     }
-
-
 
     @Override
     public List<OrderDetailsVM> getUserOrderDetails() {
@@ -96,10 +86,8 @@ public class OrderServiceImpl implements OrdersService {
 
         List<Orders> orders = ordersRepo.findByClientId(client.getId());
 
-        return orders.stream().map(this::extractOrderDetailsVM).collect(Collectors.toList());
+        return orders.stream().map(order -> extractOrderDetailsVM(order)).collect(Collectors.toList());
     }
-
-
 
     private OrderDetailsVM extractOrderDetailsVM(Orders order) {
         OrderDetailsVM orderDetailsVM = new OrderDetailsVM();
@@ -109,6 +97,7 @@ public class OrderServiceImpl implements OrdersService {
         orderDetailsVM.setProductDtos(ProductMapper.PRODUCT_MAPPER.toDtoList(order.getProducts()));
         return orderDetailsVM;
     }
+
 
 }
 

@@ -9,7 +9,7 @@ import java.util.Map;
 public interface OrdersService {
 
     Map<String, String> saveOrder(OrdersDto ordersDto);
-    OrderDetailsVM getOrderDetails(String code) throws RuntimeException;;
+    OrderDetailsVM getOrderDetails(String code) throws RuntimeException;
     List<OrderDetailsVM> getAllOrderDetails();
     List<OrderDetailsVM> getUserOrderDetails();
 }

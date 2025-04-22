@@ -9,5 +9,6 @@ public interface categoryService {
 
     List<categoryDto> GetAllCategories();
     categoryDto findById(Long id);
+    categoryDto findByName(String name);
 
 }

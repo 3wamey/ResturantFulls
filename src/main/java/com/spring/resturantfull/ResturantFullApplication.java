@@ -8,7 +8,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @SpringBootApplication
 @ConfigurationPropertiesScan
 @EnableConfigurationProperties
-
 public class ResturantFullApplication {
 
     public static void main(String[] args) {

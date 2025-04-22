@@ -27,6 +27,8 @@ public class Orders {
     @JoinColumn(name = "client_id")
     private Client client;
 
+
+
     @ManyToMany
     @JoinTable(
             name = "request_order_product",

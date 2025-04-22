@@ -36,14 +36,32 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(
                 api -> api
+
                         .requestMatchers(HttpMethod.POST, "/client/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/client/create-client").permitAll()
-//                        .requestMatchers(HttpMethod.GET, "/product/**").hasAnyRole("USER", "ADMIN")
+                        //.requestMatchers(HttpMethod.GET, "/product/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/category/**").hasAnyRole("USER", "ADMIN")
+                        .anyRequest().authenticated()
+//                        .requestMatchers(HttpMethod.POST, "/client/login").permitAll()
+//                        .requestMatchers(HttpMethod.POST, "/client/create-client").permitAll()
+//
+//
+////                        .requestMatchers(HttpMethod.GET, "/product/**").hasAnyRole("USER", "ADMIN")
+////                        .requestMatchers(HttpMethod.POST,"/product/product/addProduct").hasAnyRole("ADMIN")
+////                        .requestMatchers(HttpMethod.POST,"/product/delete").hasAnyRole("ADMIN")
+////                        .requestMatchers(HttpMethod.POST,"/product/update").hasAnyRole("ADMIN")
+//
+//
 //                        .requestMatchers(HttpMethod.GET, "/category/**").hasAnyRole("USER", "ADMIN")
-//                        .requestMatchers(HttpMethod.POST, "/orders/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/chefs/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/contactInfo/**").hasAnyRole("USER", "ADMIN")
-        );
+//
+////                        .requestMatchers(HttpMethod.POST, "/orders/**").hasAnyRole("USER", "ADMIN")
+////                        .requestMatchers(HttpMethod.GET, "/orders/allOrderDetails").hasRole("ADMIN")
+//
+//
+//                        .requestMatchers(HttpMethod.GET, "/chefs/**").hasAnyRole("USER", "ADMIN")
+//                        .requestMatchers(HttpMethod.POST, "/contactInfo/**").hasAnyRole("USER", "ADMIN")
+//
+     );
 
         http.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
 

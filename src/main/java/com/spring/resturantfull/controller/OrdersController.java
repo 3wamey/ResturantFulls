@@ -23,7 +23,7 @@ public class OrdersController {
 
     @PostMapping("/saveOrder")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    ResponseEntity<Map<String, String>> saveOrder(@RequestBody OrdersDto ordersDto) {
+    ResponseEntity<Map<String, String>> SaveOrder(@RequestBody OrdersDto ordersDto) {
         return ResponseEntity.created(URI.create("/orders/saveOrder")).body(ordersService.saveOrder(ordersDto));
     }
 
@@ -34,13 +34,13 @@ public class OrdersController {
     }
 
     @GetMapping("/allOrderDetails")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     ResponseEntity<List<OrderDetailsVM>> getAllOrderDetails() {
         return ResponseEntity.ok(ordersService.getAllOrderDetails());
     }
 
-    @GetMapping("/userOrderDetails")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @GetMapping("/userOrderDetails")
     ResponseEntity<List<OrderDetailsVM>> getUserOrderDetails() {
         return ResponseEntity.ok(ordersService.getUserOrderDetails());
     }

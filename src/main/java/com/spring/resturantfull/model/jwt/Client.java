@@ -25,10 +25,14 @@ public class Client extends ClientBaseEntity {
     private List<Role> roles;
 
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    List<Orders> requestOrders;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    List<ContactInfo> contactInfo;
+  private   List<Orders> requestOrders;
+
+
+
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+   private List<ContactInfo> contactInfo;
 
 }
