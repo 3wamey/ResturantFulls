@@ -2,6 +2,7 @@ package com.spring.resturantfull.service.Impl;
 
 import com.spring.resturantfull.Dtos.categoryDto;
 import com.spring.resturantfull.controller.vm.ProductResponseVM;
+import com.spring.resturantfull.controller.vm.ProductVm;
 import com.spring.resturantfull.mapper.CategoryMapper;
 import com.spring.resturantfull.mapper.ProductMapper;
 import com.spring.resturantfull.model.Category;
@@ -78,38 +79,47 @@ public class productServiceImpl implements proudectService {
         List <Product> products = productRepo.findAllById(porductIds);
         return ProductMapper.PRODUCT_MAPPER.toDtoList(products);
     }
-
     @Override
-    public productDto addProduct(productDto productDto) {
-        Product product = PRODUCT_MAPPER.toEntity(productDto);
-        categoryDto categoryDto = categoryService.findByName(productDto.getName());
+    public void addProduct(ProductVm productVm) {
 
-        product.setCategory(CategoryMapper.CATEGORY_MAPPER.toEntity(categoryDto));
+        if(categoryService.existsCategory(productVm.getCategoryName())){
+            throw new RuntimeException("error.categoryExists");
+        }
+       Product product = new Product();
+        product.setName(productVm.getName());
+        product.setDescription(productVm.getDescription());
+        product.setPrice(productVm.getPrice());
+        product.setLogoPath(productVm.getLogoPath());
+       categoryDto categoryDto= categoryService.findByName(productVm.getName());
 
-        return PRODUCT_MAPPER.toDto(productRepo.save(product));
+       Category category= CategoryMapper.CATEGORY_MAPPER.toEntity(categoryDto);
+
+        product.setCategory(category);
+
+        productRepo.save(product);
     }
+
 
 
     @Override
     public productDto updateProduct(productDto productDto) {
-        // 1. Find the existing product by ID
         Product existingProduct = productRepo.findById(productDto.getId())
                 .orElseThrow(() -> new RuntimeException("Product not found with id: " + productDto.getId()));
 
-        // 2. Update product fields
+
         existingProduct.setName(productDto.getName());
         existingProduct.setDescription(productDto.getDescription());
         existingProduct.setPrice(productDto.getPrice());
         existingProduct.setLogoPath(productDto.getLogoPath());
 
-        // 3. Set category if categoryId is provided
+
         if (productDto.getCategoryId() != null) {
             Category category = categoryRepo.findById(productDto.getCategoryId())
                     .orElseThrow(() -> new RuntimeException("Category not found with id: " + productDto.getCategoryId()));
             existingProduct.setCategory(category);
         }
 
-        // 4. Save and return the updated product
+
         Product updatedProduct = productRepo.save(existingProduct);
         return PRODUCT_MAPPER.toDto(existingProduct);
     }

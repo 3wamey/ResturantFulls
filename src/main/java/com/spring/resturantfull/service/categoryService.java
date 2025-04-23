@@ -11,4 +11,10 @@ public interface categoryService {
     categoryDto findById(Long id);
     categoryDto findByName(String name);
 
+
+    categoryDto addCategory(categoryDto category);
+    categoryDto updateCategory(categoryDto category);
+    void deleteCategory(Long id);
+    boolean existsCategory(String name);
+
 }

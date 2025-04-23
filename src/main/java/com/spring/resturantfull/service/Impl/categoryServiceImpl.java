@@ -41,4 +41,40 @@ public class categoryServiceImpl implements categoryService {
         return  CategoryMapper.CATEGORY_MAPPER.toDto(category);
     }
 
+
+
+    @Override
+    public categoryDto addCategory(categoryDto dto) {
+        Category category = CategoryMapper.CATEGORY_MAPPER.toEntity(dto);
+        Category saved = categoryRepo.save(category);
+        return CategoryMapper.CATEGORY_MAPPER.toDto(saved);
+    }
+
+    @Override
+    public categoryDto updateCategory(categoryDto dto) {
+        Category existing = categoryRepo.findById(dto.getId())
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+
+        existing.setName(dto.getName());
+        existing.setLogoPath(dto.getLogoPath());
+        existing.setFlag(dto.getFlag());
+
+        Category updated = categoryRepo.save(existing);
+        return CategoryMapper.CATEGORY_MAPPER.toDto(updated);
+    }
+
+    @Override
+    public void deleteCategory(Long id) {
+        if (!categoryRepo.existsById(id)) {
+            throw new RuntimeException("Category not found");
+        }
+        categoryRepo.deleteById(id);
+    }
+
+    @Override
+    public boolean existsCategory(String name) {
+        return categoryRepo.existsByName(name);
+    }
+
+
 }

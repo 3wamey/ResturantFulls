@@ -2,6 +2,7 @@ package com.spring.resturantfull.service;
 
 import com.spring.resturantfull.Dtos.productDto;
 import com.spring.resturantfull.controller.vm.ProductResponseVM;
+import com.spring.resturantfull.controller.vm.ProductVm;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface proudectService {
 
 
 
-    productDto addProduct(productDto productDto);
+    void addProduct(ProductVm productVm);
     productDto updateProduct(productDto productDto);
     productDto deleteProduct(productDto productDto);
 

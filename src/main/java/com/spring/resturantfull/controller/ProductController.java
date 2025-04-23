@@ -6,6 +6,7 @@ package com.spring.resturantfull.controller;
 
 import com.spring.resturantfull.Dtos.productDto;
 import com.spring.resturantfull.controller.vm.ProductResponseVM;
+import com.spring.resturantfull.controller.vm.ProductVm;
 import com.spring.resturantfull.service.proudectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -46,10 +47,11 @@ public class ProductController {
 
 
 
-    @PostMapping("/product/addProduct")
+    @PostMapping("/addProduct")
    @PreAuthorize("hasRole('ADMIN')")
-    ResponseEntity<productDto> addProduct(@RequestBody productDto   product) {
-        return ResponseEntity.ok(service.addProduct(product));
+    ResponseEntity<Void> addProduct(@RequestBody ProductVm productVm) {
+        service.addProduct(productVm);
+        return ResponseEntity.ok().build();
     }
 
 
